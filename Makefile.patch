@@ -1,5 +1,5 @@
---- hid-ite8291r3/Makefile	2022-08-29 10:21:32.587619672 +0100
-+++ hid-ite8291r3-patched/Makefile	2022-08-29 10:35:14.703162476 +0100
+--- hid-ite8291r3/Makefile	2022-08-29 13:08:12.850650940 +0100
++++ hid-ite8291r3-patched/Makefile	2022-08-29 13:03:21.252459616 +0100
 @@ -4,24 +4,9 @@
  
  obj-m += $(MODNAME).o
@@ -8,11 +8,10 @@
 -MDIR = /usr/src/$(MODNAME)-$(MODVER)
  
  all:
--	make -C $(KDIR) M=$(PWD) modules
-+    make -C $(KDIR) M=$(PWD) modules
+ 	make -C $(KDIR) M=$(PWD) modules
  
  clean:
--	make -C $(KDIR) M=$(PWD) clean
+ 	make -C $(KDIR) M=$(PWD) clean
 -
 -dkmsinstall:
 -	mkdir -p $(MDIR)
@@ -26,4 +25,3 @@
 -	-dkms uninstall $(MODNAME)/$(MODVER)
 -	-dkms remove $(MODNAME)/$(MODVER) --all
 -	rm -rf $(MDIR)
-+    make -C $(KDIR) M=$(PWD) clean
