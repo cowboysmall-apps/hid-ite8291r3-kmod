@@ -3,8 +3,8 @@
 
 
 #define buildforkernels newest
-#define buildforkernels current
-%define buildforkernels akmod
+%define buildforkernels current
+#define buildforkernels akmod
 
 %global debug_package %{nil}
 
