@@ -2,9 +2,9 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 
-%define buildforkernels newest
+#define buildforkernels newest
 #define buildforkernels current
-#define buildforkernels akmod
+%define buildforkernels akmod
 
 %global debug_package %{nil}
 
