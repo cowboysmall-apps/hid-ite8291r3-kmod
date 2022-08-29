@@ -65,7 +65,7 @@ kmodtool  --target %{_target_cpu} --repo fedora --kmodname %{name} %{?buildforke
 
 # apply patches and do other stuff here
 pushd hid-ite8291r3-%{commit}
-    patch0 -p1
+    %patch0 -p1
 popd
 
 
