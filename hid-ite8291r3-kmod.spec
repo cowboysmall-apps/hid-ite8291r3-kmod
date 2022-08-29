@@ -72,6 +72,13 @@ done
 
 
 %build
+#for kernel_version  in %{?kernel_versions} ; do
+#    pushd  _kmod_build_${kernel_version%%___*}
+#    make %{?_smp_mflags} \
+#        KSRC=${kernel_version##*___} \
+#        KVERS=${kernel_version%%___*} modules
+#    popd
+#done
 for kernel_version in %{?kernel_versions}; do
     pushd  _kmod_build_${kernel_version%%___*}
     make %{?_smp_mflags} KDIR=${kernel_version##*___}
