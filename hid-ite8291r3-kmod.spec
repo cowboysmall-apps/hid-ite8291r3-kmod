@@ -38,16 +38,6 @@ BuildRequires:  %{AkmodsBuildRequires}
 %{summary}.
 
 
-%package -n hid-ite8291r3
-Summary:        Common package of kernel driver for the ITE 8291 (rev 0.03) RGB keyboard backlight controller
-Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-common = %{version}-%{release}
-
-
-%description -n hid-ite8291r3
-%{summary}.
-
-
 %prep
 # error out if there was something wrong with kmodtool
 %{?kmodtool_check}
@@ -95,7 +85,7 @@ done
 %{?akmod_install}
 
 
-%files -n hid-ite8291r3
+%files
 %license hid-ite8291r3-%{commit}/LICENSE
 %doc hid-ite8291r3-%{commit}/README.md
 %{_sysconfdir}/udev/rules.d/99-ite8291r3.rules
