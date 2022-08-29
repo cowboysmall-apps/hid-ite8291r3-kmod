@@ -2,7 +2,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 
-%define buildforkernels akmod
+#define buildforkernels akmod
 %global debug_package %{nil}
 
 
@@ -25,13 +25,14 @@ Patch0: Makefile.patch
 # and fix the code (if needed).
 ExclusiveArch:  x86_64
 
+BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-current buildsys-build-rpmfusion
 
 %global AkmodsBuildRequires %{_bindir}/kmodtool xz time elfutils-libelf-devel gcc bc
 BuildRequires:  %{AkmodsBuildRequires}
 
 
 # kmodtool does its magic here
-%{expand:%(kmodtool --target %{_target_cpu} --repo fedora --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 
 %description
@@ -44,7 +45,7 @@ BuildRequires:  %{AkmodsBuildRequires}
 
 
 # print kmodtool output for debugging purposes:
-kmodtool  --target %{_target_cpu} --repo fedora --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
+kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 
 %setup -q -c
@@ -62,6 +63,13 @@ done
 
 
 %build
+#for kernel_version  in %{?kernel_versions} ; do
+#    pushd  _kmod_build_${kernel_version%%___*}
+#    make %{?_smp_mflags} \
+#        KSRC=${kernel_version##*___} \
+#        KVERS=${kernel_version%%___*} modules
+#    popd
+#done
 for kernel_version in %{?kernel_versions}; do
     pushd  _kmod_build_${kernel_version%%___*}
     make %{?_smp_mflags} KDIR=${kernel_version##*___}
