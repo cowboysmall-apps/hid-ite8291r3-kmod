@@ -20,6 +20,9 @@ Source0:        %{URL}/archive/%{commit}/hid-ite8291r3-%{shortcommit}.tar.gz
 # Source0:        https://github.com/pobrn/hid-ite8291r3/archive/48e04cb96517f8574225ebabb286775feb942ef5/hid-ite8291r3-48e04cb9.tar.gz
 
 
+Patch0: Makefile.patch
+
+
 # Verify that the package build for all architectures.
 # In most time you should remove the Exclusive/ExcludeArch directives
 # and fix the code (if needed).
@@ -61,12 +64,12 @@ kmodtool  --target %{_target_cpu} --repo fedora --kmodname %{name} %{?buildforke
 
 
 # apply patches and do other stuff here
-# pushd foo-%{version}
-# #patch0 -p1 -b .suffix
-# popd
+pushd hid-ite8291r3-%{commit}
+    patch0 -p1
+popd
 
 
-for kernel_version  in %{?kernel_versions} ; do
+for kernel_version in %{?kernel_versions} ; do
     cp -a hid-ite8291r3-%{commit} _kmod_build_${kernel_version%%___*}
 done
 
@@ -74,9 +77,7 @@ done
 %build
 for kernel_version in %{?kernel_versions}; do
     pushd  _kmod_build_${kernel_version%%___*}
-    make %{?_smp_mflags} \
-        KSRC=${kernel_version##*___} \
-        KVERS=${kernel_version%%___*} modules
+    make %{?_smp_mflags} KDIR=${kernel_version##*___}
     popd
 done
 
