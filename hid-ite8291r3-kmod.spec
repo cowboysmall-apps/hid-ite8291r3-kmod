@@ -3,13 +3,12 @@
 
 %global debug_package %{nil}
 
-
 #define buildforkernels newest
 %define buildforkernels current
 #define buildforkernels akmod
 
 
-# name should have a -kmod suffix
+
 Name:           hid-ite8291r3-kmod
 Version:        0.1
 Release:        1%{?dist}.1
@@ -23,12 +22,13 @@ ExclusiveArch:  x86_64
 %global AkmodsBuildRequires %{_bindir}/kmodtool xz time elfutils-libelf-devel gcc bc buildsys-build-rpmfusion-kerneldevpkgs-current buildsys-build-rpmfusion
 BuildRequires:  %{AkmodsBuildRequires}
 
-# kmodtool does its magic here
 %{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+
 
 
 %description
 %{summary}.
+
 
 
 %prep
@@ -47,12 +47,14 @@ for kernel_version in %{?kernel_versions} ; do
 done
 
 
+
 %build
 for kernel_version in %{?kernel_versions}; do
     pushd  _kmod_build_${kernel_version%%___*}
     make %{?_smp_mflags} KDIR=${kernel_version##*___}
     popd
 done
+
 
 
 %install
@@ -65,6 +67,8 @@ done
 %{?akmod_install}
 
 
+
 %changelog
 * Mon Aug 29 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.1-1
 - First version of kernel module - hid-ite8291r3-kmod
+
