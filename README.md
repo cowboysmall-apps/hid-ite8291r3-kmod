@@ -1,4 +1,4 @@
-# Kernel module for the ITE 8291 (rev 0.03) RGB keyboard backlight controller
+# RPM Package of the kernel module for the ITE 8291 (rev 0.03) RGB keyboard backlight controller
 
 
 | Package                 | Build Status                                                                                                                                                                                                                                                     |
