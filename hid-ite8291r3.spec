@@ -50,6 +50,9 @@ Provides: %{name}-kmod-common = %{version}
 
 
 %changelog
+* Tue Aug 30 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.0-2
+- Fixed version and release numbers
+
 * Tue Aug 30 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.2-1
 - Renamed udev rules file to avoid conflict with ite8291r3-ctl
 

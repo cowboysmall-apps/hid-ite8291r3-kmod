@@ -69,6 +69,9 @@ done
 
 
 %changelog
+* Tue Aug 30 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.0-2
+- Fixed version and release numbers
+
 * Mon Aug 29 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.1-1
 - First version of kernel module - hid-ite8291r3-kmod
 
