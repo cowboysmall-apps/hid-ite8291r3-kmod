@@ -4,14 +4,14 @@
 %global debug_package %{nil}
 
 #define buildforkernels newest
-%define buildforkernels current
-#define buildforkernels akmod
+#define buildforkernels current
+%define buildforkernels akmod
 
 
 
 Name:           hid-ite8291r3-kmod
 Version:        0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Kernel module for the ITE 8291 (rev 0.03) RGB keyboard backlight controller
 License:        GPLv2
 URL:            https://github.com/pobrn/hid-ite8291r3
@@ -19,7 +19,7 @@ Source0:        %{URL}/archive/%{commit}/hid-ite8291r3-%{shortcommit}.tar.gz
 Patch0:         Makefile.patch
 
 ExclusiveArch:  x86_64
-%global AkmodsBuildRequires %{_bindir}/kmodtool xz time elfutils-libelf-devel gcc bc buildsys-build-rpmfusion-kerneldevpkgs-current buildsys-build-rpmfusion
+%global AkmodsBuildRequires %{_bindir}/kmodtool xz time elfutils-libelf-devel gcc bc
 BuildRequires:  %{AkmodsBuildRequires}
 
 %{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
@@ -69,6 +69,10 @@ done
 
 
 %changelog
+* Wed Aug 31 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.0-3
+- Changed build for kernels to be akmod
+- removed unnecessry build dependencies
+
 * Tue Aug 30 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.0-2
 - Fixed version and release numbers
 
