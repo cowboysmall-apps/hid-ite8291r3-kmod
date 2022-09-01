@@ -7,7 +7,7 @@
 
 Name:           hid-ite8291r3
 Version:        0.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Common package for the ITE 8291 (rev 0.03) RGB keyboard backlight controller
 License:        GPLv2
 URL:            https://github.com/pobrn/hid-ite8291r3
@@ -15,8 +15,8 @@ Source0:        %{URL}/archive/%{commit}/hid-ite8291r3-%{shortcommit}.tar.gz
 Source1:        99-hid-ite8291r3.rules
 
 ExclusiveArch:  x86_64
-Requires: %{name}-kmod >= %{version}
-Provides: %{name}-kmod-common = %{version}
+Requires: %{name}-kmod >= %{version}-%{release}
+Provides: %{name}-kmod-common = %{version}-%{release}
 
 
 
@@ -50,6 +50,9 @@ Provides: %{name}-kmod-common = %{version}
 
 
 %changelog
+* Thu Sep 01 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.0-4
+- Used both version and release in requires and provides
+
 * Wed Aug 31 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.0-3
 - Changed release to reflect kmod release
 

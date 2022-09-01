@@ -11,7 +11,7 @@
 
 Name:           hid-ite8291r3-kmod
 Version:        0.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Kernel module for the ITE 8291 (rev 0.03) RGB keyboard backlight controller
 License:        GPLv2
 URL:            https://github.com/pobrn/hid-ite8291r3
@@ -69,6 +69,9 @@ done
 
 
 %changelog
+* Thu Sep 01 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.0-4
+- Used both version and release in requires and provides for common package
+
 * Wed Aug 31 2022 Jerry Kiely <jerry@cowboysmall.com> - 0.0-3
 - Changed build for kernels to be akmod
 - removed unnecessry build dependencies
