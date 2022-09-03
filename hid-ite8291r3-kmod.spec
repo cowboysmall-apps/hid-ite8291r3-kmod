@@ -3,11 +3,7 @@
 
 %global debug_package %{nil}
 
-#define buildforkernels newest
-#define buildforkernels current
 %define buildforkernels akmod
-
-
 
 Name:           hid-ite8291r3-kmod
 Version:        0.0
